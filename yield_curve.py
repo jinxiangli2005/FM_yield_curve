@@ -4,11 +4,12 @@
 # - add_zero_rate(maturity, zero_rate): add a zero rate to the curve
 # - get_zero_rate(maturity): get the zero rate for a given maturity
 
-import numpy as np
+import numpy as np 
 import math
 
 class ZeroCurve:
     def __init__(self):
+        # set up empty list
         self.maturities = []
         self.zero_rates = []
         self.AtMats = []
