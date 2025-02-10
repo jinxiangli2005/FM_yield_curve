@@ -4,6 +4,7 @@
 # - add_zero_rate(maturity, zero_rate): add a zero rate to the curve
 # - get_zero_rate(maturity): get the zero rate for a given maturity
 
+# make some imports
 import numpy as np
 import math
 
