@@ -72,18 +72,29 @@ def exp_interp(xs, ys, x):
     """
     xs = np.array(xs)
     ys = np.array(ys)
-    
+
+    # Debugging: Print inputs
+    print("exp_interp inputs:", "xs=", xs, "ys=", ys, "x=", x)
+
+    # Handle out-of-bounds cases
+    if x < xs[0]:
+        print("Warning: x is less than the minimum of xs. Extrapolating.")
+        return ys[0]  # Extrapolate using the first value
+    elif x > xs[-1]:
+        print("Warning: x is greater than the maximum of xs. Extrapolating.")
+        return ys[-1]  # Extrapolate using the last value
+
     # Find the interval [x0, x1] where x0 <= x <= x1
     idx = np.searchsorted(xs, x) - 1
     x0, x1 = xs[idx], xs[idx + 1]
     y0, y1 = ys[idx], ys[idx + 1]
-    
+
     # Calculate the continuously compounded rate
     rate = (np.log(y1) - np.log(y0)) / (x1 - x0)
-    
+
     # Interpolate the y value for the given x
     y = y0 * np.exp(rate * (x - x0))
-    
+
     return y
 
 class YieldCurve(ZeroCurve):
